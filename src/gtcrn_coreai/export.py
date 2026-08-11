@@ -12,20 +12,9 @@ import torch
 from coreai.runtime import AIModelAssetMetadata
 from coreai_torch import TorchConverter, get_decomp_table
 
+from .interface import INPUT_NAMES, OUTPUT_NAMES
 from .loader import create_streaming_model, initial_state
 
-INPUT_NAMES = (
-    "spectrogram",
-    "convolution_state",
-    "attention_state",
-    "inter_frame_state",
-)
-OUTPUT_NAMES = (
-    "enhanced_spectrogram",
-    "convolution_state_out",
-    "attention_state_out",
-    "inter_frame_state_out",
-)
 UPSTREAM_SOURCE_TIMESTAMP = 1_785_748_511
 
 

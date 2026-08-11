@@ -20,6 +20,7 @@ dependencies = [
 ]
 
 [project.scripts]
+gtcrn-coreai-benchmark = "gtcrn_coreai.benchmark:main"
 gtcrn-coreai-export = "gtcrn_coreai.export:main"
 gtcrn-coreai-validate = "gtcrn_coreai.validate:main"
 

@@ -23,6 +23,7 @@ Core AI framework—not the older Core ML `.mlmodel`/`.mlpackage` format.
 | `weights/*.tar` | Unmodified upstream PyTorch checkpoints |
 | `src/gtcrn_coreai/export.py` | Reproducible PyTorch → Core AI conversion |
 | `src/gtcrn_coreai/validate.py` | Consecutive-frame PyTorch/Core AI parity check |
+| `src/gtcrn_coreai/benchmark.py` | Stateful per-frame specialization benchmark |
 
 GTCRN expects a complex short-time Fourier transform (STFT), not raw audio. The
 export processes one frame every 256 samples: **16 ms at 16 kHz**. Its recurrent
@@ -114,6 +115,18 @@ uv run ruff check .
 uv run pytest
 ```
 
+Benchmark a specialization over consecutive frames with recurrent state
+feedback (timing excludes STFT and model load):
+
+```sh
+uv run gtcrn-coreai-benchmark --compute-unit cpu
+uv run gtcrn-coreai-benchmark --compute-unit gpu
+```
+
+See [Neural Engine evaluation](docs/ane-evaluation.md) for the ANE experiment,
+failure evidence, and the decision to ship the current graph with CPU/GPU
+specialization rather than claim partial or unstable ANE acceleration.
+
 ### Validation results
 
 Measured on an Apple M4 Max running macOS 27.0 with `coreai-core 1.0.0b2` and
@@ -132,12 +145,11 @@ causal graph across all 611 frames of `test_wavs/mix.wav`: maximum absolute
 spectral error was `1.05e-5` and mean absolute error was `1.74e-8`.
 
 > [!NOTE]
-> Neural Engine residency is not claimed. On the validation machine, default
-> specialization attempted to place decomposed PReLU/GRU operations on the
-> Neural Engine, emitted unsupported-pattern warnings, and the ANE loader
-> aborted under memory pressure. CPU and GPU specialization both execute and
-> pass parity. Treat Neural Engine support as future authoring work, not as a
-> property of these assets.
+> Neural Engine residency is not claimed. Explicit/default ANE specialization
+> cannot load the current decomposed PReLU/GRU graph on the validation machine,
+> so there is no valid ANE latency result to compare. CPU and GPU specialization
+> both execute and pass parity. The measured decision and reproduction details
+> are in [docs/ane-evaluation.md](docs/ane-evaluation.md).
 
 ## Ahead-of-time compilation
 

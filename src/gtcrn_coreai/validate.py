@@ -8,7 +8,6 @@ import os
 from pathlib import Path
 
 import numpy as np
-import soundfile as sf
 import torch
 
 # Delegate specialization is supplied by the OS Core AI framework. Selecting it
@@ -23,7 +22,8 @@ from coreai.runtime import (  # noqa: E402
     SpecializationOptions,
 )
 
-from .export import INPUT_NAMES, OUTPUT_NAMES
+from .audio import spectrogram_frames
+from .interface import INPUT_NAMES, OUTPUT_NAMES
 from .loader import create_streaming_model, initial_state
 
 
@@ -35,27 +35,6 @@ def psnr(reference: np.ndarray, actual: np.ndarray) -> float:
         return float("inf")
     peak = max(float(np.max(np.abs(reference))), 1e-12)
     return 10.0 * np.log10((peak * peak) / error)
-
-
-def spectrogram_frames(wav_path: Path, frame_count: int) -> torch.Tensor:
-    """Load real 16 kHz audio and return GTCRN-compatible STFT frames."""
-
-    samples, sample_rate = sf.read(wav_path, dtype="float32")
-    if sample_rate != 16_000:
-        raise ValueError(f"Expected 16 kHz audio, got {sample_rate} Hz")
-    if samples.ndim != 1:
-        samples = samples.mean(axis=-1)
-    waveform = torch.from_numpy(samples)
-    window = torch.hann_window(512).sqrt()
-    spec = torch.stft(
-        waveform,
-        n_fft=512,
-        hop_length=256,
-        win_length=512,
-        window=window,
-        return_complex=True,
-    )
-    return torch.view_as_real(spec).unsqueeze(0)[:, :, :frame_count]
 
 
 async def validate(

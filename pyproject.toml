@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling==1.26.3", "pip>=21.3"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gtcrn-coreai"
+version = "0.1.0"
+description = "Reproducible Core AI export of the GTCRN streaming speech-enhancement model"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = { file = "LICENSE" }
+authors = [{ name = "Max Farrell" }]
+dependencies = [
+    "coreai-core==1.0.0b2",
+    "coreai-torch==0.4.1",
+    "einops==0.8.1",
+    "numpy==2.4.2",
+    "soundfile==0.13.1",
+    "torch==2.11.0",
+]
+
+[project.scripts]
+gtcrn-coreai-export = "gtcrn_coreai.export:main"
+gtcrn-coreai-validate = "gtcrn_coreai.validate:main"
+
+[dependency-groups]
+dev = [
+    "pytest==8.4.2",
+    "ruff==0.15.12",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gtcrn_coreai"]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = [
+    "src/gtcrn_coreai/convolution.py",
+    "src/gtcrn_coreai/convert.py",
+    "src/gtcrn_coreai/model.py",
+    "src/gtcrn_coreai/stream.py",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: exports and runs a Core AI asset"]

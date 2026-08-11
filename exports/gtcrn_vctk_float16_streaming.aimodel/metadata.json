@@ -1,0 +1,8 @@
+{
+  "assetVersion" : "2.0",
+  "creationDate" : "20260811T021547Z",
+  "producer" : "coreai-core 1.0.0b2",
+  "license" : "MIT",
+  "author" : "Rong Xiaobin et al.; Core AI conversion by Max Farrell",
+  "description" : "Streaming GTCRN speech enhancement model trained on VCTK. Original implementation and weights: https:\/\/github.com\/Xiaobin-Rong\/gtcrn. Converted with Apple's coreai-torch reference workflow."
+}

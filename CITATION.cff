@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: >-
+  If you use this conversion, cite the original GTCRN paper and this software
+  repository.
+title: GTCRN Core AI
+type: software
+authors:
+  - family-names: Farrell
+    given-names: Max
+version: 0.1.0
+date-released: 2026-08-10
+license: MIT
+repository-code: https://github.com/maxffarrell/gtcrn-coreai
+references:
+  - type: conference-paper
+    title: "GTCRN: A Speech Enhancement Model Requiring Ultralow Computational Resources"
+    authors:
+      - family-names: Rong
+        given-names: Xiaobin
+    year: 2024
+    doi: 10.1109/ICASSP48485.2024.10448310

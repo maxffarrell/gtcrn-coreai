@@ -1,0 +1,17 @@
+.DS_Store
+.pytest_cache/
+.ruff_cache/
+.venv/
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.egg-info/
+
+# Generated exports are ignored by default. The two attributed release assets
+# under exports/ are explicitly tracked below.
+exports/*.aimodel/
+!exports/gtcrn_dns3_float16_streaming.aimodel/
+!exports/gtcrn_dns3_float16_streaming.aimodel/**
+!exports/gtcrn_vctk_float16_streaming.aimodel/
+!exports/gtcrn_vctk_float16_streaming.aimodel/**

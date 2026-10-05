@@ -1,5 +1,7 @@
 # Core AI assets
 
+> **Original GTCRN model and weights: Xiaobin Rong and the GTCRN authors/contributors.** [Official upstream](https://github.com/Xiaobin-Rong/gtcrn) · [Original paper](https://doi.org/10.1109/ICASSP48485.2024.10448310) · [Full attribution](../ATTRIBUTION.md). Max Farrell provides the Core AI conversion and validation. Upstream MIT terms are retained.
+
 The checked-in `.aimodel` directories are self-contained Core AI AIPrograms.
 Their parameter data comes from the attributed upstream checkpoints in
 [`weights/`](../weights/).

@@ -1,5 +1,7 @@
 # Pretrained weights
 
+> **Original GTCRN model and weights: Xiaobin Rong and the GTCRN authors/contributors.** [Official upstream](https://github.com/Xiaobin-Rong/gtcrn) · [Original paper](https://doi.org/10.1109/ICASSP48485.2024.10448310) · [Full attribution](../ATTRIBUTION.md). Max Farrell provides the Core AI conversion and validation. Upstream MIT terms are retained.
+
 These are unmodified checkpoints from the official
 [Xiaobin-Rong/gtcrn](https://github.com/Xiaobin-Rong/gtcrn) repository at commit
 `502ebfab64da7c4a9af78dcb9c6ceef1ebb01c73`.

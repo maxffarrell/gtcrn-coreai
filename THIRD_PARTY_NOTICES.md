@@ -1,5 +1,7 @@
 # Third-party notices
 
+**Original model credits are prominently listed in [ATTRIBUTION.md](ATTRIBUTION.md). The Core AI converter is not the original model author.**
+
 ## GTCRN
 
 The model architecture, streaming conversion, pretrained checkpoints, and test
